@@ -1,0 +1,98 @@
+[
+  {
+    "id": "1",
+    "title": "NeuralCart",
+    "category": "AI E-Commerce",
+    "url": "neuralcart.ai",
+    "desc": "AI-powered product discovery engine with personalised recommendations, dynamic pricing, and one-click checkout.",
+    "metric": "+40%",
+    "metricLabel": "Conversion Rate",
+    "tech": [
+      "Next.js",
+      "OpenAI",
+      "Stripe"
+    ],
+    "accent": "#D8E63C",
+    "imageSrc": "/uploads/portfolio/1776035896173.png"
+  },
+  {
+    "id": "2",
+    "title": "LogiFlow SaaS",
+    "category": "SaaS Dashboard",
+    "url": "logiflow.io",
+    "desc": "End-to-end logistics SaaS — shipment tracking, warehouse management, and analytics dashboard for 3PL companies.",
+    "metric": "20h",
+    "metricLabel": "Saved per Week",
+    "tech": [
+      "Next.js",
+      "Prisma",
+      "AWS"
+    ],
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  },
+  {
+    "id": "3",
+    "title": "TechNova Brand",
+    "category": "Brand + Web",
+    "url": "technova.io",
+    "desc": "Full brand identity and marketing website for a B2B SaaS startup — #1 on Product Hunt with 8K signups in 48h.",
+    "metric": "8K",
+    "metricLabel": "Signups in 48h",
+    "tech": [
+      "Next.js",
+      "Framer Motion",
+      "Webflow"
+    ],
+    "accent": "#D6B4FC",
+    "imageSrc": ""
+  },
+  {
+    "id": "4",
+    "title": "Maverick Agency",
+    "category": "Marketing Site",
+    "url": "maverick.agency",
+    "desc": "Performance marketing agency website with animated stats, case study showcase, and a multi-step project wizard.",
+    "metric": "3×",
+    "metricLabel": "Inbound Leads",
+    "tech": [
+      "Next.js",
+      "GSAP",
+      "Sanity CMS"
+    ],
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  },
+  {
+    "id": "5",
+    "title": "MediConnect",
+    "category": "Healthcare Portal",
+    "url": "mediconnect.health",
+    "desc": "Patient-doctor portal with appointment booking, teleconsultation, EHR integration, and insurance claim tracking.",
+    "metric": "50K",
+    "metricLabel": "Patients Onboarded",
+    "tech": [
+      "Next.js",
+      "PostgreSQL",
+      "Twilio"
+    ],
+    "accent": "#D6B4FC",
+    "imageSrc": ""
+  },
+  {
+    "id": "6",
+    "title": "UrbanRealty",
+    "category": "Real Estate",
+    "url": "urbanrealty.in",
+    "desc": "Property listing marketplace with AI-powered search, virtual tours, EMI calculator, and developer dashboards.",
+    "metric": "50K",
+    "metricLabel": "Monthly Visitors",
+    "tech": [
+      "Next.js",
+      "Algolia",
+      "Mapbox"
+    ],
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "title": "COADAL Launches AI Automation Division",
+    "description": "We've officially launched our dedicated AI automation practice, helping businesses save 40+ hours per week through intelligent workflow automation.",
+    "image": "/uploads/updates/1775858616788.png",
+    "tag": "Launch",
+    "date": "2025-04-01"
+  },
+  {
+    "id": "2",
+    "title": "50+ Projects Delivered Successfully",
+    "description": "A major milestone — we've now delivered over 50 projects across web, mobile, AI, and marketing for startups and enterprises worldwide.",
+    "image": "",
+    "tag": "Milestone",
+    "date": "2025-03-15"
+  },
+  {
+    "id": "3",
+    "title": "New Office Space in Jaipur",
+    "description": "We've moved into a bigger office in Jaipur to accommodate our growing team and give clients a world-class space to collaborate.",
+    "image": "",
+    "tag": "Team",
+    "date": "2025-02-20"
+  }
+]

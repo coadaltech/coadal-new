@@ -1,0 +1,9 @@
+[
+  { "id":"1", "title":"NeuralCart",      "category":"AI Web App",       "metric":"+40%",   "metricLabel":"Conversion Rate", "accent":"#D8E63C", "bg":"linear-gradient(160deg,#0a1800 0%,#192b00 50%,#0d1030 100%)", "videoSrc":"" },
+  { "id":"2", "title":"PocketPay",       "category":"FinTech App",       "metric":"100K+",  "metricLabel":"Downloads",       "accent":"#D6B4FC", "bg":"linear-gradient(160deg,#0d0921 0%,#1a0f35 50%,#0d0e2e 100%)", "videoSrc":"" },
+  { "id":"3", "title":"Maverick AI Ads", "category":"Performance Ads",   "metric":"5× ROAS","metricLabel":"Ad Return",       "accent":"#D8E63C", "bg":"linear-gradient(160deg,#100f00 0%,#1e1c00 50%,#17184B 100%)", "videoSrc":"" },
+  { "id":"4", "title":"SalesBot AI",     "category":"AI Automation",     "metric":"3× FTE", "metricLabel":"Tasks Replaced",  "accent":"#D6B4FC", "bg":"linear-gradient(160deg,#070818 0%,#0d0e35 50%,#17184B 100%)", "videoSrc":"" },
+  { "id":"5", "title":"UrbanRealty",     "category":"SEO & Content",     "metric":"50K",    "metricLabel":"Monthly Visitors","accent":"#D8E63C", "bg":"linear-gradient(160deg,#001a0d 0%,#00270f 50%,#0d1f30 100%)", "videoSrc":"" },
+  { "id":"6", "title":"TechNova Brand",  "category":"Brand Identity",    "metric":"#1",     "metricLabel":"Product Hunt",    "accent":"#D6B4FC", "bg":"linear-gradient(160deg,#0d0921 0%,#1a0f35 50%,#2d1060 100%)", "videoSrc":"" },
+  { "id":"7", "title":"LogiFlow SaaS",   "category":"SaaS Platform",     "metric":"20h",    "metricLabel":"Saved / Week",    "accent":"#D8E63C", "bg":"linear-gradient(160deg,#001a1a 0%,#002626 50%,#17184B 100%)", "videoSrc":"" }
+]

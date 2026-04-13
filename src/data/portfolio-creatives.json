@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "brand": "NeuralCart",
+    "type": "Product Launch",
+    "platform": "Instagram",
+    "accent": "#D8E63C",
+    "imageSrc": "/uploads/portfolio/1776035946081.png"
+  },
+  {
+    "id": "2",
+    "brand": "PocketPay",
+    "type": "Feature Highlight",
+    "platform": "Instagram",
+    "accent": "#D6B4FC",
+    "imageSrc": ""
+  },
+  {
+    "id": "3",
+    "brand": "TechNova",
+    "type": "Brand Awareness",
+    "platform": "Instagram",
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  },
+  {
+    "id": "4",
+    "brand": "FitSync",
+    "type": "Promotion",
+    "platform": "Instagram",
+    "accent": "#D6B4FC",
+    "imageSrc": ""
+  },
+  {
+    "id": "5",
+    "brand": "UrbanEats",
+    "type": "Offer Creative",
+    "platform": "Instagram",
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  },
+  {
+    "id": "6",
+    "brand": "Maverick Ads",
+    "type": "Results Creative",
+    "platform": "Instagram",
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  }
+]

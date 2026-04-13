@@ -1,0 +1,66 @@
+[
+  {
+    "id": "1",
+    "title": "PocketPay",
+    "category": "FinTech",
+    "desc": "P2P payments, instant transfers, and smart budgeting — built on React Native with real-time transaction feeds.",
+    "platform": "iOS & Android",
+    "metric": "100K+",
+    "metricLabel": "Downloads",
+    "tech": [
+      "React Native",
+      "Node.js",
+      "Stripe"
+    ],
+    "accent": "#D6B4FC",
+    "imageSrc": "/uploads/portfolio/1776035938027.png"
+  },
+  {
+    "id": "2",
+    "title": "UrbanEats",
+    "category": "Food Delivery",
+    "desc": "Hyperlocal food delivery app with live order tracking, loyalty rewards, and restaurant partner dashboard.",
+    "platform": "iOS & Android",
+    "metric": "4.8★",
+    "metricLabel": "App Store Rating",
+    "tech": [
+      "React Native",
+      "Firebase",
+      "Google Maps"
+    ],
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  },
+  {
+    "id": "3",
+    "title": "FitSync Pro",
+    "category": "Health & Fitness",
+    "desc": "AI-powered workout planner, nutrition tracker, and wearable sync — with personalised plans that adapt weekly.",
+    "platform": "iOS & Android",
+    "metric": "30K",
+    "metricLabel": "Active Users",
+    "tech": [
+      "Flutter",
+      "Python AI",
+      "HealthKit"
+    ],
+    "accent": "#D6B4FC",
+    "imageSrc": ""
+  },
+  {
+    "id": "4",
+    "title": "LogiDriver",
+    "category": "Logistics",
+    "desc": "Fleet management and driver app for last-mile delivery — real-time tracking, proof of delivery, and route optimisation.",
+    "platform": "Android",
+    "metric": "60%",
+    "metricLabel": "Faster Deliveries",
+    "tech": [
+      "React Native",
+      "AWS",
+      "Google Maps"
+    ],
+    "accent": "#D8E63C",
+    "imageSrc": ""
+  }
+]

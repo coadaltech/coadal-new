@@ -1,26 +1,126 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --cream:   #F0EEE9;
+  --cream-2: #E8E5DE;
+  --navy:    #17184B;
+  --lime:    #D8E63C;
+  --nordic:  #D3DDE7;
+  --violet:  #D6B4FC;
+  --white:   #ffffff;
+
+  /* Gradients */
+  --grad-hero:        linear-gradient(135deg, #17184B 0%, #1e1f6e 100%);
+  --grad-lime-violet: linear-gradient(135deg, #D8E63C 0%, #D6B4FC 100%);
+  --grad-navy-violet: linear-gradient(135deg, #17184B 0%, #3b2d8f 100%);
+  --grad-nordic-lime: linear-gradient(135deg, #D3DDE7 0%, #D8E63C 100%);
+  --grad-violet-navy: linear-gradient(135deg, #D6B4FC 0%, #17184B 100%);
+  --grad-lime-navy:   linear-gradient(135deg, #D8E63C 0%, #17184B 100%);
+  --grad-text:        linear-gradient(135deg, #D8E63C 0%, #D6B4FC 100%);
+
+  /* Borders */
+  --border-light: rgba(23,24,75,0.09);
+  --border-dark:  rgba(255,255,255,0.10);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--cream);
+  color: #0d0d0d;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-syne), system-ui, sans-serif;
+  line-height: 1.1;
+}
+
+::selection {
+  background: rgba(216,230,60,0.35);
+  color: #17184B;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--cream); }
+::-webkit-scrollbar-thumb { background: rgba(23,24,75,0.18); border-radius: 3px; }
+
+/* ── Utilities ── */
+.font-serif-display { font-family: var(--font-cormorant), Georgia, serif; }
+
+/* Gradient text — lime to violet */
+.gradient-text {
+  background: linear-gradient(135deg, #D8E63C 0%, #D6B4FC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gradient text — navy version */
+.gradient-text-dark {
+  background: linear-gradient(135deg, #17184B 0%, #3b2d8f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Section label */
+.section-label {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #17184B;
+  opacity: 0.4;
+}
+
+/* ── Animations ── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes orb-drift {
+  0%,100% { transform: translate(0,0) scale(1); }
+  33%      { transform: translate(24px,-20px) scale(1.04); }
+  66%      { transform: translate(-16px,18px) scale(0.97); }
+}
+@keyframes badge-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(216,230,60,0.5); }
+  50%      { box-shadow: 0 0 0 7px rgba(216,230,60,0); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+
+.animate-ticker    { animation: ticker 38s linear infinite; will-change: transform; transform: translateZ(0); }
+.animate-spin-slow { animation: spin-slow 28s linear infinite; will-change: transform; }
+.animate-orb       { animation: orb-drift 11s ease-in-out infinite; will-change: transform; }
+.badge-pulse       { animation: badge-pulse 2.5s ease-in-out infinite; }
+.animate-float     { animation: float 7s ease-in-out infinite; will-change: transform; }
+
+/* ── Performance: force GPU compositing on animated layers ── */
+canvas { transform: translateZ(0); }
+
+/* Marquee rows in Testimonials */
+[style*="marquee-ltr"],
+[style*="marquee-rtl"] { will-change: transform; transform: translateZ(0); }
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
