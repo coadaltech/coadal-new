@@ -30,10 +30,10 @@ function BrowserMockup({ site }: { site: Site }) {
           <span style={{ fontSize:10, color:"rgba(0,0,0,0.35)", fontFamily:"var(--font-inter)" }}>{site.url}</span>
         </div>
       </div>
-      <div style={{ width:"100%", aspectRatio:"16/9", position:"relative", overflow:"hidden" }}>
+      <div style={{ width:"100%", paddingTop:"56.25%", position:"relative", overflow:"hidden" }}>
         {site.imageSrc ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={site.imageSrc} alt={site.title} style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
+          <img src={site.imageSrc} alt={site.title} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", display:"block" }} />
         ) : (
           <div style={{ position:"absolute", inset:0, background:"#fafafa", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:8 }}>
             <div style={{ position:"absolute", inset:0, backgroundImage:`linear-gradient(rgba(0,0,0,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,0.04) 1px,transparent 1px)`, backgroundSize:"24px 24px" }} />
@@ -92,7 +92,7 @@ export default function PortfolioWebsites() {
         <div ref={scrollRef} style={{ display:"flex", gap:20, overflowX:"auto", paddingBottom:8, scrollbarWidth:"none", msOverflowStyle:"none" }} className="hide-scrollbar">
           {sites.map((site,i) => (
             <motion.div key={site.id} initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ duration:0.5, delay:i*0.07 }}
-              className="website-card" style={{ minWidth:300, background:"#ffffff", borderRadius:24, padding:20, border:"1px solid rgba(0,0,0,0.07)", boxShadow:"0 4px 20px rgba(0,0,0,0.06)", cursor:"pointer", flexShrink:0 }}
+              className="website-card" style={{ width:360, minWidth:360, maxWidth:360, background:"#ffffff", borderRadius:24, padding:20, border:"1px solid rgba(0,0,0,0.07)", boxShadow:"0 4px 20px rgba(0,0,0,0.06)", cursor:"pointer", flexShrink:0 }}
               whileHover={{ y:-4, boxShadow:"0 12px 40px rgba(0,0,0,0.12)" }}>
               <BrowserMockup site={site} />
               <div style={{ marginTop:16 }}>
@@ -118,7 +118,7 @@ export default function PortfolioWebsites() {
           </a>
         </motion.div>
       </div>
-      <style>{`.hide-scrollbar::-webkit-scrollbar{display:none;}@media(max-width:640px){.website-card{min-width:calc(85vw)!important;}}`}</style>
+      <style>{`.hide-scrollbar::-webkit-scrollbar{display:none;}@media(max-width:640px){.website-card{width:calc(85vw)!important;min-width:calc(85vw)!important;max-width:calc(85vw)!important;}}`}</style>
     </section>
   );
 }
