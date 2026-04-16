@@ -1,22 +1,14 @@
 import { NextRequest } from "next/server";
-import fs from "fs";
-import path from "path";
-
-const filePath = path.join(process.cwd(), "src/data/posts.json");
-
-function readPosts() {
-  const raw = fs.readFileSync(filePath, "utf-8");
-  return JSON.parse(raw);
-}
-
-function writePosts(posts: unknown[]) {
-  fs.writeFileSync(filePath, JSON.stringify(posts, null, 2), "utf-8");
-}
+import { getDB } from "@/lib/db";
 
 export async function GET() {
   try {
-    const posts = readPosts();
-    return Response.json(posts);
+    const sql = await getDB();
+    const rows = await sql`
+      SELECT data FROM posts
+      ORDER BY published_at DESC, created_at DESC
+    `;
+    return Response.json(rows.map((r) => r.data));
   } catch {
     return Response.json({ error: "Failed to read posts" }, { status: 500 });
   }
@@ -25,14 +17,15 @@ export async function GET() {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const posts = readPosts();
-    const newPost = {
-      ...body,
-      id: Date.now().toString(),
-      publishedAt: body.publishedAt || new Date().toISOString().split("T")[0],
-    };
-    posts.push(newPost);
-    writePosts(posts);
+    const id = Date.now().toString();
+    const publishedAt = body.publishedAt || new Date().toISOString().split("T")[0];
+    const slug = body.slug || id;
+    const newPost = { ...body, id, publishedAt, slug };
+    const sql = await getDB();
+    await sql`
+      INSERT INTO posts (id, slug, data, published_at)
+      VALUES (${id}, ${slug}, ${JSON.stringify(newPost)}, ${publishedAt})
+    `;
     return Response.json(newPost, { status: 201 });
   } catch {
     return Response.json({ error: "Failed to create post" }, { status: 500 });

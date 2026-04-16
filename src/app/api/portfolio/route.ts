@@ -1,68 +1,71 @@
 import { NextRequest } from "next/server";
-import fs from "fs";
-import path from "path";
+import { getDB } from "@/lib/db";
 
-const FILES: Record<string, string> = {
-  websites:  "src/data/portfolio-websites.json",
-  apps:      "src/data/portfolio-apps.json",
-  creatives: "src/data/portfolio-creatives.json",
-  reels:     "src/data/portfolio-reels.json",
-};
-
-function getPath(type: string) {
-  return path.join(process.cwd(), FILES[type]);
-}
-
-function read(type: string) {
-  return JSON.parse(fs.readFileSync(getPath(type), "utf-8"));
-}
-function write(type: string, data: unknown[]) {
-  fs.writeFileSync(getPath(type), JSON.stringify(data, null, 2), "utf-8");
-}
+const VALID_TYPES = new Set(["websites", "apps", "creatives", "reels"]);
 
 export async function GET(request: NextRequest) {
   const type = request.nextUrl.searchParams.get("type") ?? "";
-  if (!FILES[type]) return Response.json({ error: "Invalid type" }, { status: 400 });
-  try { return Response.json(read(type)); }
-  catch { return Response.json({ error: "Failed" }, { status: 500 }); }
+  if (!VALID_TYPES.has(type)) return Response.json({ error: "Invalid type" }, { status: 400 });
+  try {
+    const sql = await getDB();
+    const rows = await sql`
+      SELECT data FROM portfolio_items
+      WHERE type = ${type}
+      ORDER BY created_at ASC
+    `;
+    return Response.json(rows.map((r) => r.data));
+  } catch {
+    return Response.json({ error: "Failed" }, { status: 500 });
+  }
 }
 
 export async function POST(request: NextRequest) {
   const type = request.nextUrl.searchParams.get("type") ?? "";
-  if (!FILES[type]) return Response.json({ error: "Invalid type" }, { status: 400 });
+  if (!VALID_TYPES.has(type)) return Response.json({ error: "Invalid type" }, { status: 400 });
   try {
     const body = await request.json();
-    const items = read(type);
-    const item = { ...body, id: Date.now().toString() };
-    items.push(item);
-    write(type, items);
+    const id = Date.now().toString();
+    const item = { ...body, id };
+    const sql = await getDB();
+    await sql`
+      INSERT INTO portfolio_items (id, type, data)
+      VALUES (${id}, ${type}, ${JSON.stringify(item)})
+    `;
     return Response.json(item, { status: 201 });
-  } catch { return Response.json({ error: "Failed" }, { status: 500 }); }
+  } catch {
+    return Response.json({ error: "Failed" }, { status: 500 });
+  }
 }
 
 export async function PUT(request: NextRequest) {
   const type = request.nextUrl.searchParams.get("type") ?? "";
   const id   = request.nextUrl.searchParams.get("id") ?? "";
-  if (!FILES[type]) return Response.json({ error: "Invalid type" }, { status: 400 });
+  if (!VALID_TYPES.has(type)) return Response.json({ error: "Invalid type" }, { status: 400 });
   try {
     const body = await request.json();
-    const items = read(type);
-    const idx = items.findIndex((x: { id: string }) => x.id === id);
-    if (idx === -1) return Response.json({ error: "Not found" }, { status: 404 });
-    items[idx] = { ...items[idx], ...body, id };
-    write(type, items);
-    return Response.json(items[idx]);
-  } catch { return Response.json({ error: "Failed" }, { status: 500 }); }
+    const sql = await getDB();
+    const rows = await sql`SELECT data FROM portfolio_items WHERE id = ${id} AND type = ${type}`;
+    if (!rows.length) return Response.json({ error: "Not found" }, { status: 404 });
+    const updated = { ...rows[0].data, ...body, id };
+    await sql`
+      UPDATE portfolio_items SET data = ${JSON.stringify(updated)}
+      WHERE id = ${id} AND type = ${type}
+    `;
+    return Response.json(updated);
+  } catch {
+    return Response.json({ error: "Failed" }, { status: 500 });
+  }
 }
 
 export async function DELETE(request: NextRequest) {
   const type = request.nextUrl.searchParams.get("type") ?? "";
   const id   = request.nextUrl.searchParams.get("id") ?? "";
-  if (!FILES[type]) return Response.json({ error: "Invalid type" }, { status: 400 });
+  if (!VALID_TYPES.has(type)) return Response.json({ error: "Invalid type" }, { status: 400 });
   try {
-    const items = read(type);
-    const filtered = items.filter((x: { id: string }) => x.id !== id);
-    write(type, filtered);
+    const sql = await getDB();
+    await sql`DELETE FROM portfolio_items WHERE id = ${id} AND type = ${type}`;
     return Response.json({ success: true });
-  } catch { return Response.json({ error: "Failed" }, { status: 500 }); }
+  } catch {
+    return Response.json({ error: "Failed" }, { status: 500 });
+  }
 }

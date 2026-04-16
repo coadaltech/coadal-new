@@ -1,6 +1,11 @@
 import { NextRequest } from "next/server";
-import fs from "fs";
-import path from "path";
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key:    process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,15 +17,23 @@ export async function POST(request: NextRequest) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const ext = file.name.split(".").pop() ?? "jpg";
-    const fileName = `${Date.now()}.${ext}`;
-    const uploadDir = path.join(process.cwd(), `public/uploads/${folder}`);
+    const result = await new Promise<{ secure_url: string }>((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        {
+          folder: `coadal/${folder}`,
+          resource_type: "auto",
+        },
+        (error, result) => {
+          if (error || !result) return reject(error ?? new Error("Upload failed"));
+          resolve(result);
+        }
+      );
+      stream.end(buffer);
+    });
 
-    if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
-
-    fs.writeFileSync(path.join(uploadDir, fileName), buffer);
-    return Response.json({ url: `/uploads/${folder}/${fileName}` });
-  } catch {
+    return Response.json({ url: result.secure_url });
+  } catch (err) {
+    console.error("Upload error:", err);
     return Response.json({ error: "Upload failed" }, { status: 500 });
   }
 }
