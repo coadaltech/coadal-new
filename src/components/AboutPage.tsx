@@ -97,11 +97,11 @@ export default function AboutPage() {
               </blockquote>
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold" style={{ background: "linear-gradient(135deg,#D8E63C,#D6B4FC)", color: "#17184B" }}>
-                  AM
+                  AS
                 </div>
                 <div>
-                  <p className="font-semibold text-white text-sm">Aryan Mehta</p>
-                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>Co-founder & Head of AI</p>
+                  <p className="font-semibold text-white text-sm">Aman Sharma</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.45)" }}>CEO & Founder</p>
                 </div>
               </div>
             </div>

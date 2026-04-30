@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
-  const { name, email, company, budget, message, services } = await request.json();
+  const { name, email, phone, company, budget, message, services } = await request.json();
 
   /* ── Gmail SMTP via App Password ── */
   const transporter = nodemailer.createTransport({
@@ -41,6 +41,7 @@ export async function POST(request: Request) {
             ${[
               ["Name",     name     || "—"],
               ["Email",    email    || "—"],
+              ["Phone",    phone    || "—"],
               ["Company",  company  || "—"],
               ["Budget",   budget   || "—"],
               ["Services", servicesText],
