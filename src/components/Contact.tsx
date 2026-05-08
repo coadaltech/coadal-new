@@ -23,7 +23,7 @@ const countryCodes = [
   { code: "+82",  label: "🇰🇷 +82"  },
 ];
 
-//conuntryCodes can be expanded as needed, but this covers a good range of regions for a global agency
+//conuntryCodes can be expanded as needed
 
 const inputCls = "w-full px-4 py-3.5 rounded-xl bg-[#F0EEE9] border border-black/[0.07] text-[#0d0d0d] text-sm placeholder-[#0d0d0d]/25 focus:outline-none focus:border-[#17184B]/30 focus:bg-white transition-all";
 const labelCls = "block text-[10px] font-bold tracking-[0.18em] uppercase text-[#0d0d0d]/35 mb-2";
